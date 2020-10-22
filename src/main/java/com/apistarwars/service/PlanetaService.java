@@ -35,4 +35,8 @@ public class PlanetaService {
     public Flux<Planeta> findAllPlanetsByNome(String nome) {
         return Flux.defer(() -> Flux.fromIterable(this.planetaRepository.findAllPlanetsByNome(nome)));
     }
+
+    public Mono<Planeta> findAllPlanetsById(Integer id) {
+        return Mono.defer(() -> Mono.just(this.planetaRepository.findById(id).orElseThrow()));
+    }
 }
