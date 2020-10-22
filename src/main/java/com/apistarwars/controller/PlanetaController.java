@@ -3,6 +3,7 @@ package com.apistarwars.controller;
 import com.apistarwars.model.Planeta;
 import com.apistarwars.service.PlanetaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
@@ -16,6 +17,7 @@ public class PlanetaController {
     private PlanetaService planetaService;
 
     @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
     public Mono<Planeta> savePlanet(@RequestBody @Validated Planeta planeta) {
         return planetaService.savePlanet(planeta);
     }
@@ -24,7 +26,7 @@ public class PlanetaController {
         return planetaService.findAllPlanets();
     }
 
-    @GetMapping("{nome}")
+    @GetMapping("nome/{nome}")
     public Flux<Planeta> findAllPlanetsByNome(@PathVariable String nome) {
         return planetaService.findAllPlanetsByNome(nome);
     }
