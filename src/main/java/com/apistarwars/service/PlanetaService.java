@@ -17,11 +17,6 @@ public class PlanetaService {
     private PlanetaRepository planetaRepository;
     private static Logger LOG = Logger.getLogger(PlanetaService.class.getName());
 
-    public void getPlanetas() {
-//        Object o = clientSwapi.recuperaPlanetas();
-//        System.out.println(o);
-    }
-
     public Mono<Planeta> savePlanet(Planeta planeta) {
         LOG.info("Save new planet - " + planeta.getNome());
         return Mono
