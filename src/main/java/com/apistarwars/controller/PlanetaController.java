@@ -23,4 +23,9 @@ public class PlanetaController {
     public Flux<Planeta> findAllPlanets() {
         return planetaService.findAllPlanets();
     }
+
+    @GetMapping("{nome}")
+    public Flux<Planeta> findAllPlanetsByNome(@PathVariable String nome) {
+        return planetaService.findAllPlanetsByNome(nome);
+    }
 }
