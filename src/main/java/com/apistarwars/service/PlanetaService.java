@@ -23,20 +23,28 @@ public class PlanetaService {
     }
 
     public Mono<Planeta> savePlanet(Planeta planeta) {
-        LOG.info("Salvar novo planeta");
+        LOG.info("Save new planet - " + planeta.getNome());
         return Mono
                 .defer(() -> Mono.just(this.planetaRepository.save(planeta)));
     }
 
     public Flux<Planeta> findAllPlanets() {
+        LOG.info("Return list planets");
         return Flux.defer(() -> Flux.fromIterable(this.planetaRepository.findAll()));
     }
 
     public Flux<Planeta> findAllPlanetsByNome(String nome) {
+        LOG.info("Return planets - Filter by name - " + nome);
         return Flux.defer(() -> Flux.fromIterable(this.planetaRepository.findAllPlanetsByNome(nome)));
     }
 
     public Mono<Planeta> findAllPlanetsById(Integer id) {
+        LOG.info("Return planets - Filter by id - " + id);
         return Mono.defer(() -> Mono.just(this.planetaRepository.findById(id).orElseThrow()));
+    }
+
+    public void removePlanet(Integer id) {
+        LOG.info("Remove planet by id - " + id);
+        this.planetaRepository.deleteById(id);
     }
 }

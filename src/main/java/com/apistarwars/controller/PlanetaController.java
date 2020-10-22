@@ -33,4 +33,8 @@ public class PlanetaController {
     public Mono<Planeta> findPlanetById(@PathVariable Integer id) {
         return planetaService.findAllPlanetsById(id);
     }
+    @DeleteMapping("{id}")
+    public void removePlanet(@PathVariable Integer id) {
+        planetaService.removePlanet(id);
+    }
 }
