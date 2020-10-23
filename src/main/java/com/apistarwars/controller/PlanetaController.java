@@ -16,6 +16,7 @@ public class PlanetaController {
     @Autowired
     private PlanetaService planetaService;
 
+    @CrossOrigin
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Planeta> savePlanet(@RequestBody @Validated Planeta planeta) {

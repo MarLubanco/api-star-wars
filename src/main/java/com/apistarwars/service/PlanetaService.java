@@ -1,6 +1,8 @@
 package com.apistarwars.service;
 
+import com.apistarwars.client.StarWartsClient;
 import com.apistarwars.model.Planeta;
+import com.apistarwars.model.StarWarsApiPlanet;
 import com.apistarwars.repository.PlanetaRepository;
 import org.jboss.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,16 +10,18 @@ import org.springframework.stereotype.Service;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
-import java.util.List;
-
 @Service
 public class PlanetaService {
 
     @Autowired
     private PlanetaRepository planetaRepository;
+    @Autowired
+    private StarWartsClient starWartsClient;
     private static Logger LOG = Logger.getLogger(PlanetaService.class.getName());
 
     public Mono<Planeta> savePlanet(Planeta planeta) {
+        StarWarsApiPlanet planetStarWars = starWartsClient.find(planeta.getId());
+        planeta.setQtdViewFilme(planetStarWars.getFilms().size());
         LOG.info("Save new planet - " + planeta.getNome());
         return Mono
                 .defer(() -> Mono.just(this.planetaRepository.save(planeta)));
