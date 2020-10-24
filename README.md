@@ -6,8 +6,9 @@
 Java 11
 Hibernate
 JPA
-FeignClient
-Spring Boot 2.3.3
+Spring Boot
+Spring WebFLux
+Spring Cloud OpenFeign
 Maven
 Git
 H2 Database
