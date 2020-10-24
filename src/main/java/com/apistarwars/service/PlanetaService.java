@@ -32,6 +32,10 @@ public class PlanetaService {
         return Flux.defer(() -> Flux.fromIterable(this.planetaRepository.findAll()));
     }
 
+    public Flux<StarWarsApiPlanet> findAllPlanetsByApi(Integer id) {
+        return Flux.defer(() -> Flux.fromIterable(this.starWartsClient.findAllPlanets(id)));
+    }
+
     public Flux<Planeta> findAllPlanetsByNome(String nome) {
         LOG.info("Return planets - Filter by name - " + nome);
         return Flux.defer(() -> Flux.fromIterable(this.planetaRepository.findAllPlanetsByNome(nome)));

@@ -12,7 +12,6 @@ import java.util.List;
 @FeignClient(name = "starwarsapi", url = "https://swapi.dev/api")
 public interface StarWartsClient {
 
-    @CrossOrigin
     @GetMapping("/planets/{id}")
     StarWarsApiPlanet find(@PathVariable Integer id);
 
